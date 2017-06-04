@@ -41,6 +41,7 @@ sonarqube {
         property "sonar.host.url", "http://localhost:9000"
         property "sonar.username", "admin"
         property "sonar.password", "password"
+        property "sonar.profile", "Android Lint"
 //        property "sonar.host.url", "https://sonarqube.com"
 //        property "sonar.login", "40b648734684e939484cdddaf6aeb54901a19c8a"
 //        property "sonar.organization", "better-software-inc"
