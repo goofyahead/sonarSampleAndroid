@@ -33,11 +33,16 @@ dependencies {
 sonarqube {
     properties {
         property "sonar.sourceEncoding", "UTF-8"
-        property "sonar.projectKey", "EK_Android"
-        property "sonar.projectName", "EK_Android"
+        property "sonar.projectKey", "1234-abcd"
+        property "sonar.projectName", "BetterSoftwareInc"
         property "sonar.projectVersion", "V1.0"
         property "sonar.sources", "src/main/java"
         property "sonar.tests", "src/test/java"
-        property "sonar.java.coveragePlugin", "jacoco"
+        property "sonar.host.url", "http://localhost:9000"
+        property "sonar.username", "admin"
+        property "sonar.password", "password"
+//        property "sonar.host.url", "https://sonarqube.com"
+//        property "sonar.login", "40b648734684e939484cdddaf6aeb54901a19c8a"
+//        property "sonar.organization", "better-software-inc"
     }
 }
