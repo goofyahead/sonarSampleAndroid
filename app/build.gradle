@@ -1,5 +1,28 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.sonarqube'
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "0.7.5.201505241946"
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports after running tests."
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+    classDirectories = fileTree(
+            dir: 'build/intermediates/classes/debug/gof/com/sonarqubesample',
+            excludes: ['**/R.class',
+                       '**/BuildConfig.*',
+                       '**/Manifest*.*',
+                       '**/*Activity*.*',
+                       '**/*Fragment*.*'])
+    sourceDirectories = files('src/main/java')
+    executionData = files('build/jacoco/debugUnitTest.exec')
+}
 
 android {
     compileSdkVersion 25
@@ -14,8 +37,12 @@ android {
     }
     buildTypes {
         release {
+            testCoverageEnabled false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            testCoverageEnabled true
         }
     }
 }
@@ -40,10 +67,10 @@ sonarqube {
         property "sonar.tests", "src/test/java"
         property "sonar.host.url", "http://localhost:9000"
         property "sonar.username", "admin"
-        property "sonar.password", "password"
-//        property "sonar.profile", "Android Lint"
-//        property "sonar.host.url", "https://sonarqube.com"
-//        property "sonar.login", "40b648734684e939484cdddaf6aeb54901a19c8a"
-//        property "sonar.organization", "better-software-inc"
+        property "sonar.password", "admin"
+        property "sonar.java.coveragePlugin", "jacoco"
+        property "sonar.jacoco.reportPaths", "${project.buildDir}/jacoco/testDebugUnitTest.exec" // path to coverage reports
+        property "sonar.junit.reportsPath", "${project.buildDir}/test-results/testDebugUnitTest" // path to junit reports
+        property "sonar.android.lint.report", "${project.buildDir}/outputs/lint-results.xml" // path to lint reports
     }
 }
