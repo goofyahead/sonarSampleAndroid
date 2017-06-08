@@ -12,6 +12,23 @@ public class UserListViewModel {
             }
         }
 
+        String x = null;
+
+        String w = x.concat( "hola");
+
+        return count;
+    }
+
+    public int getCharsLike(char letter, String sentence) {
+        int count = 0;
+        char[] sentenceArray = sentence.toCharArray();
+
+        for (char aSentenceArray : sentenceArray) {
+            if (aSentenceArray == letter) {
+                count++;
+            }
+        }
+
         return count;
     }
 }

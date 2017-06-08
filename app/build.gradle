@@ -71,6 +71,6 @@ sonarqube {
         property "sonar.java.coveragePlugin", "jacoco"
         property "sonar.jacoco.reportPaths", "${project.buildDir}/jacoco/testDebugUnitTest.exec" // path to coverage reports
         property "sonar.junit.reportsPath", "${project.buildDir}/test-results/testDebugUnitTest" // path to junit reports
-        property "sonar.android.lint.report", "${project.buildDir}/outputs/lint-results.xml" // path to lint reports
+        property "sonar.android.lint.report", "${project.buildDir}/reports/lint-results.xml" // path to lint reports
     }
 }
